@@ -1,0 +1,122 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>reveal.js</title>
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+          <h2>Immutability</h2>
+          <p>
+            Your data should not be the X-Men.
+          </p>
+        </section>
+        <section>
+          <h2>What is (Im)Mutability?</h2>
+          <p>
+            <span class="fragment">Mutability - liable or subject to change or alteration.</span>
+            <span class="fragment">Immutability - not mutable; unchangeable; changeless.</span>
+            <span class="fragment">Source - Dictionary.com (that's right, not Wikipedia for once!)</span>
+          </p>
+        </section>
+        <section>Time for some quick demonstrations</section>
+				<section>
+          <section>
+            <h2>How JS handles mutability</h2>
+            <ul>
+              <li class="fragment">primitives are immutable (string type included)</li>
+              <li class="fragment">maps and objects... not so much</li>
+            </ul>
+          </section>
+          <section>
+            
+          </section>
+        </section>
+        <section>
+          <section>
+            <h2>How Elixir handles immutability</h2>
+            <p class="fragment">Elixir is a functional language running on Erlang. Only the former really matters here</p>
+            <p class="fragment">Everything is immutable</p>
+          </section>
+          <section>
+            <h2>Example</h2>
+          </section>
+        </section>
+        <section>
+          <h2>But doesn't this use a lot of memory?</h2>
+          <p>Nope. It can actually save memory when attempting to make copies.</p>
+        </section>
+        <section>
+          <h2>But doesn't performance take a hit?</h2>
+          <p>
+            <span class="fragment">And so's your face!</span>
+          </p>
+          <p>
+            <span class="fragment"> ...</span>
+            <span class="fragment"> well...</span>
+            <span class="fragment"> yeah...</span>
+            <span class="fragment"> kind of...</span>
+          </p>
+        </section>
+        <section>
+          <h2>Morals of this story:</h2>
+          <ol>
+            <li class="fragment">Limit mutability as much as possible</li>
+            <li class="fragment">
+              Please don't create globals
+              <ul>
+                <li class="fragment">... Outside of config settings</li>
+                <li class="fragment">... Alright! Just don't modify them!</li>
+              </ul>
+            </li>
+          </ol>
+        </section>
+        <section><h2>Questions?</h2></section>
+        <section>
+          <h2>Credits</h2>
+					<ul>
+            <li><a href="https://github.com/hakimel/reveal.js">Reveal.js (Slides)</a></li>
+            <li><a href="http://www.dictionary.com">Dictionary.com, for all your dictionary needs!</a></li>
+          </ul>
+        </section>
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				history: true,
+
+				// More info https://github.com/hakimel/reveal.js#dependencies
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+	</body>
+</html>
