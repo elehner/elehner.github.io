@@ -33,206 +33,206 @@
             <p>
               Your data should not be the X-Men.
             </p>
-         </section>
-         <section>
-            <h2>What is (Im)Mutability?</h2>
-            <p>
-              <span class="fragment">Mutability - liable or subject to change or alteration.</span>
-              <span class="fragment">Immutability - not mutable; unchangeable; changeless.</span>
-              <span class="fragment">Source - Dictionary.com (that's right, not Wikipedia for once!)</span>
-            </p>
-         </section>
-         <section>
-            <h2>Why Immutability?</h2>
-	         <blockquote cite="https://facebook.github.io/immutable-js">
-	            &ldquo;
-              The last thing you wanted any programmer to do is mess with internal state even if presented figuratively.
-              Instead, the objects should be presented as site of higher level behaviors more appropriate for use as dynamic components.
-              &rdquo;
-	         </blockquote>
-            <p>- Alan Kay, Creator of SmallTalk</p>
-            <p>Outside methods should not poke object state directly</p>
-         </section>
-         <section>
-            <h2>So how's this work?</h2>
-            Time for some quick demonstrations in everyone's favorite language, JavaScript!
-         </section>
-	       <section>
-            <section>
-              <h2>How JS handles immutability</h2>
-              <ul>
-                <li class="fragment">primitives are immutable (string type included)</li>
-                <li class="fragment">maps and objects... not so much</li>
-              </ul>
-            </section>
-            <section>
-              <h2>Inherent immutability in JS</h2>
-              <pre><code class="hljs">
-  var x, y;
-  x = 1;
-  y = x;
-  y = 2;
-  console.log(x);
-              </code></pre>
-              <aside class="notes">
-                x is of course 1, since y is being assigned the value of x and not a reference to it
-              </aside>
-            </section>
-            <section>
-              <h2>Inherent mutability in JS</h2>
-              <pre><code class="hljs">
-  var x, y;
-  x = [1, 2, 3];
-  y = x;
-  y[4] = 5;
-  console.log(x);
-              </code></pre>
-              <aside class="notes">
-                Fuzzier here.  x = [1, 2, 3, 5] now, since y the y update refers to the same object.
-              </aside>
-            </section>
-            <section>
-              <h2>Side stepping mutability in JS</h2>
-              <pre><code class="hljs">
-  var x, y;
-  x = [1, 2, 3];
-  y = $.extend([], x); // For those that know jQuery well, humor me
-  y[4] = 5;
-  console.log(x);
-              </code></pre>
-              <aside class="notes">
-                Great! x and y are both seperate representations of same data (note that the data is duplicated,
-                but we now know y won't trample x!)
-              </aside>
-            </section>
-            <section>
-              <h2>Failing to side step mutability in JS</h2>
-              <pre><code class="hljs">
-  var x, y;
-  x = [1, {'test': 2}, 3];
-  y = $.extend([], x);
-  y[1]['test'] = 5;
-  console.log(x[1]);
-              </code></pre>
-              <span class="fragment">$.extend([], x) should be $.extend(true, [], x) for deep copying</span>
-              <aside class="notes">
-                The extend class actually only performs a shallow copy by default. This is actually to
-                prevent unnecessary data creation and object duplication.
-                Setting the first variable to true takes care of this.
-              </aside>
-            </section>
-         </section>
-         <section>
-            <section>
-              <h2>How can JS handle immutability?</h2>
-              <p class="fragment">JavaScript falls short here</p>
-              <p class="fragment">We can use <a href="https://facebook.github.io/immutable-js/">Immutable JS!</a></p>
-              <p class="fragment">Adds immutable maps and arrays (referred to as lists)</p>
-              <aside class="notes">
-                ES6 has slightly better copying, but that's not what we're talking about here. Copying mutable objects
-                can only side step the problem until someone goofs.
-              </aside>
-            </section>
-            <section>
-              <h2>Add Immutability to JS</h2>
-              <pre><code class="hljs">
-  var x, y;
-  x = Immutable.fromJS([1, {'test': 2}, 3]);
-  y = x.set(1, x.get(1).set('test', 5));
-  console.log(x.get(1).toJS());
-  console.log(y.get(1).toJS());
-              </code></pre>
-              <aside class="notes">
-                First thought: "Holy hell this is a lot of text!?"<br/>
-                Second thought: "Interesting... Almost like Alan Kay's quote"
-              </aside>
-            </section>
-         </section>
-         <section>
-            <h2>But doesn't this use a lot of memory?</h2>
-            <p class="fragment">Nope. It can actually save memory when attempting to make copies compared to immutable languages.</p>
-            <aside class="notes">
-              You don't need to create copies. Since the data can't be changed, you can point back to the original since you know
-              it won't change. Think about an array/List. Instead of copying every element, you only change the data that needs to change,
-              and everything is (literally) the same. You only split when it's necessary, but it does it by default when setting.
-            </aside>
-         </section>
-         <section>
-            <h2>But doesn't performance take a hit?</h2>
-            <p>
-              <span class="fragment">And so's your face!</span>
-            </p>
-            <p>
-              <span class="fragment"> ...</span>
-              <span class="fragment"> well...</span>
-              <span class="fragment"> yeah...</span>
-              <span class="fragment"> kind of...</span>
-            </p>
-            <aside class="notes">
-              The performance hit is not generally severe enough to warrant worry.
-              The VMs immutable languages run on are tuned to better handle this stuff.
-            </aside>
-         </section>
-         <section>
-            <section>
-              <h2>But isn't the real world mutable?</h2>
-              <p class="fragment">Technically yes, it is.</p>
-            </section>
-            <section>
-              <h2>On the other hand...</h2>
-              <p>Technically no, it isn't.</p>
-              <blockquote cite="https://en.wikiquote.org/wiki/Heraclitus">
-                &ldquo;You could not step twice into the same river. &rdquo;
-              </blockquote>
-              <p>- Heraclitus of Ephesus</p>
-              <aside class="notes">
-                Time slices (discrete times units)
-                Zeno's paradox
-              </aside>
-            </section>
-         </section>
-         <section>
-            <h2>Morals of this story:</h2>
-            <ol>
-              <li class="fragment">Limit mutability as much as possible</li>
-              <li class="fragment">
-                Please don't create globals
-                <ul>
-                   <li class="fragment">...Outside of config settings</li>
-                   <li class="fragment">...Alright! Just don't modify them!</li>
-                </ul>
-              </li>
-            </ol>
-         </section>
-         <section><h2>Questions?</h2></section>
-         <section>
-            <h2>Credits</h2>
+        </section>
+        <section>
+          <h2>What is (Im)Mutability?</h2>
+          <p>
+            <span class="fragment">Mutability - liable or subject to change or alteration.</span>
+            <span class="fragment">Immutability - not mutable; unchangeable; changeless.</span>
+            <span class="fragment">Source - Dictionary.com (that's right, not Wikipedia for once!)</span>
+          </p>
+        </section>
+        <section>
+          <h2>Why Immutability?</h2>
+          <blockquote cite="https://facebook.github.io/immutable-js">
+            &ldquo;
+            The last thing you wanted any programmer to do is mess with internal state even if presented figuratively.
+            Instead, the objects should be presented as site of higher level behaviors more appropriate for use as dynamic components.
+            &rdquo;
+          </blockquote>
+          <p>- Alan Kay, Creator of SmallTalk</p>
+          <p>Outside methods should not poke object state directly</p>
+        </section>
+        <section>
+          <h2>So how's this work?</h2>
+          Time for some quick demonstrations in everyone's favorite language, JavaScript!
+        </section>
+	      <section>
+          <section>
+            <h2>How JS handles immutability</h2>
             <ul>
-              <li><a href="https://github.com/hakimel/reveal.js">Reveal.js (Slides)</a></li>
-              <li><a href="http://www.dictionary.com">Dictionary.com, for all your dictionary needs!</a></li>
-              <li><a href="https://facebook.github.io/immutable-js/">Immutable</a></li>
-              <li>Code syntax highlighting courtesy of <a href="http://softwaremaniacs.org/soft/highlight/en/description/">highlight.js</a>.</li>
+              <li class="fragment">primitives are immutable (string type included)</li>
+              <li class="fragment">maps and objects... not so much</li>
             </ul>
-         </section>
-			</div>
-		</div>
+          </section>
+          <section>
+            <h2>Inherent immutability in JS</h2>
+            <pre><code class="hljs">
+var x, y;
+x = 1;
+y = x;
+y = 2;
+console.log(x);
+            </code></pre>
+            <aside class="notes">
+              x is of course 1, since y is being assigned the value of x and not a reference to it
+            </aside>
+          </section>
+          <section>
+            <h2>Inherent mutability in JS</h2>
+            <pre><code class="hljs">
+var x, y;
+x = [1, 2, 3];
+y = x;
+y[4] = 5;
+console.log(x);
+            </code></pre>
+            <aside class="notes">
+              Fuzzier here.  x = [1, 2, 3, 5] now, since y the y update refers to the same object.
+            </aside>
+          </section>
+          <section>
+            <h2>Side stepping mutability in JS</h2>
+            <pre><code class="hljs">
+var x, y;
+x = [1, 2, 3];
+y = $.extend([], x); // For those that know jQuery well, humor me
+y[4] = 5;
+console.log(x);
+            </code></pre>
+            <aside class="notes">
+              Great! x and y are both seperate representations of same data (note that the data is duplicated,
+              but we now know y won't trample x!)
+            </aside>
+          </section>
+          <section>
+            <h2>Failing to side step mutability in JS</h2>
+            <pre><code class="hljs">
+var x, y;
+x = [1, {'test': 2}, 3];
+y = $.extend([], x);
+y[1]['test'] = 5;
+console.log(x[1]);
+            </code></pre>
+            <span class="fragment">$.extend([], x) should be $.extend(true, [], x) for deep copying</span>
+            <aside class="notes">
+              The extend class actually only performs a shallow copy by default. This is actually to
+              prevent unnecessary data creation and object duplication.
+              Setting the first variable to true takes care of this.
+            </aside>
+          </section>
+        </section>
+        <section>
+          <section>
+            <h2>How can JS handle immutability?</h2>
+            <p class="fragment">JavaScript falls short here</p>
+            <p class="fragment">We can use <a href="https://facebook.github.io/immutable-js/">Immutable JS!</a></p>
+            <p class="fragment">Adds immutable maps and arrays (referred to as lists)</p>
+            <aside class="notes">
+              ES6 has slightly better copying, but that's not what we're talking about here. Copying mutable objects
+              can only side step the problem until someone goofs.
+            </aside>
+          </section>
+          <section>
+            <h2>Add Immutability to JS</h2>
+            <pre><code class="hljs">
+var x, y;
+x = Immutable.fromJS([1, {'test': 2}, 3]);
+y = x.set(1, x.get(1).set('test', 5));
+console.log(x.get(1).toJS());
+console.log(y.get(1).toJS());
+            </code></pre>
+            <aside class="notes">
+              First thought: "Holy hell this is a lot of text!?"<br/>
+              Second thought: "Interesting... Almost like Alan Kay's quote"
+            </aside>
+          </section>
+        </section>
+        <section>
+          <h2>But doesn't this use a lot of memory?</h2>
+          <p class="fragment">Nope. It can actually save memory when attempting to make copies compared to immutable languages.</p>
+          <aside class="notes">
+            You don't need to create copies. Since the data can't be changed, you can point back to the original since you know
+            it won't change. Think about an array/List. Instead of copying every element, you only change the data that needs to change,
+            and everything is (literally) the same. You only split when it's necessary, but it does it by default when setting.
+          </aside>
+        </section>
+        <section>
+          <h2>But doesn't performance take a hit?</h2>
+          <p>
+            <span class="fragment">And so's your face!</span>
+          </p>
+          <p>
+            <span class="fragment"> ...</span>
+            <span class="fragment"> well...</span>
+            <span class="fragment"> yeah...</span>
+            <span class="fragment"> kind of...</span>
+          </p>
+          <aside class="notes">
+            The performance hit is not generally severe enough to warrant worry.
+            The VMs immutable languages run on are tuned to better handle this stuff.
+          </aside>
+        </section>
+        <section>
+          <section>
+            <h2>But isn't the real world mutable?</h2>
+            <p class="fragment">Technically yes, it is.</p>
+          </section>
+          <section>
+            <h2>On the other hand...</h2>
+            <p>Technically no, it isn't.</p>
+            <blockquote cite="https://en.wikiquote.org/wiki/Heraclitus">
+              &ldquo;You could not step twice into the same river. &rdquo;
+            </blockquote>
+            <p>- Heraclitus of Ephesus</p>
+            <aside class="notes">
+              Time slices (discrete times units)
+              Zeno's paradox
+            </aside>
+          </section>
+        </section>
+        <section>
+          <h2>Morals of this story:</h2>
+          <ol>
+            <li class="fragment">Limit mutability as much as possible</li>
+            <li class="fragment">
+              Please don't create globals
+              <ul>
+                 <li class="fragment">...Outside of config settings</li>
+                 <li class="fragment">...Alright! Just don't modify them!</li>
+              </ul>
+            </li>
+          </ol>
+        </section>
+        <section><h2>Questions?</h2></section>
+        <section>
+          <h2>Credits</h2>
+          <ul>
+            <li><a href="https://github.com/hakimel/reveal.js">Reveal.js (Slides)</a></li>
+            <li><a href="http://www.dictionary.com">Dictionary.com</a>, for all your dictionary needs!</li>
+            <li><a href="https://facebook.github.io/immutable-js/">Immutable</a></li>
+            <li>Code syntax highlighting courtesy of <a href="http://softwaremaniacs.org/soft/highlight/en/description/">highlight.js</a>.</li>
+          </ul>
+        </section>
+      </div>
+    </div>
 
-		<script src="lib/js/head.min.js"></script>
-		<script src="js/reveal.js"></script>
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
 
-		<script>
-			// More info https://github.com/hakimel/reveal.js#configuration
-			Reveal.initialize({
-				history: true,
+    <script>
+      // More info https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        history: true,
 
-				// More info https://github.com/hakimel/reveal.js#dependencies
-				dependencies: [
-					{ src: 'plugin/markdown/marked.js' },
-					{ src: 'plugin/markdown/markdown.js' },
-					{ src: 'plugin/notes/notes.js', async: true },
-					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
-				]
-			});
-		</script>
-	</body>
+        // More info https://github.com/hakimel/reveal.js#dependencies
+        dependencies: [
+          { src: 'plugin/markdown/marked.js' },
+          { src: 'plugin/markdown/markdown.js' },
+          { src: 'plugin/notes/notes.js', async: true },
+          { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+        ]
+      });
+    </script>
+  </body>
 </html>
