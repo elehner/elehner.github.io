@@ -43,15 +43,39 @@
           </p>
         </section>
         <section>
-          <h2>Why Immutability?</h2>
-          <blockquote cite="https://facebook.github.io/immutable-js">
-            &ldquo;
-            The last thing you wanted any programmer to do is mess with internal state even if presented figuratively.
-            Instead, the objects should be presented as site of higher level behaviors more appropriate for use as dynamic components.
-            &rdquo;
-          </blockquote>
-          <p>- Alan Kay, Creator of SmallTalk</p>
-          <p>Outside methods should not poke object state directly</p>
+          <section>
+            <h2>Why Immutability?</h2>
+            <div class="fragment">
+              <blockquote cite="https://facebook.github.io/immutable-js">
+                &ldquo;
+                The last thing you wanted any programmer to do is mess with internal state even if presented figuratively.
+                Instead, the objects should be presented as site of higher level behaviors more appropriate for use as dynamic components.
+                &rdquo;
+              </blockquote>
+              <p>- Alan Kay, Creator of SmallTalk</p>
+              <p>Outside methods should not poke object state directly</p>
+            </div>
+          </section>
+          <section>
+            <h2>Quick Example of poking external Objects</h2>
+            <pre><code class="hljs">
+var square = {
+  height: 4,
+  width: 4,
+  setHeight: function(height) {
+    this.height = height; this.width = height;
+  },
+  setWidth: function(width) {
+    this.height = width; this.width = width;
+  }
+};
+square.setHeight(6)
+console.log(square.height+"|"+square.width);
+square.height = 8;
+console.log(square.height+"|"+square.width);
+            </code></pre>
+            <p class="fragment">Note: ES6 has implicit getters and setters now</p>
+          </section>
         </section>
         <section>
           <h2>So how's this work?</h2>
@@ -62,7 +86,7 @@
             <h2>How JS handles immutability</h2>
             <ul>
               <li class="fragment">primitives are immutable (string type included)</li>
-              <li class="fragment">maps and objects... not so much</li>
+              <li class="fragment">arrays and maps (really objects)... not so much</li>
             </ul>
           </section>
           <section>
@@ -84,7 +108,7 @@ console.log(x);
 var x, y;
 x = [1, 2, 3];
 y = x;
-y[4] = 5;
+y[3] = 5;
 console.log(x);
             </code></pre>
             <aside class="notes">
@@ -97,7 +121,7 @@ console.log(x);
 var x, y;
 x = [1, 2, 3];
 y = $.extend([], x); // For those that know jQuery well, humor me
-y[4] = 5;
+y[3] = 5;
 console.log(x);
             </code></pre>
             <aside class="notes">
@@ -134,7 +158,17 @@ console.log(x[1]);
             </aside>
           </section>
           <section>
-            <h2>Add Immutability to JS</h2>
+            <h2>Add Immutability to JS - Lists</h2>
+            <pre><code class="hljs">
+var x, y;
+x = Immutable.List([1, 2, 3]);
+y = x.set(1, 4);
+console.log(x.get(1));
+console.log(y.get(1));
+            </code></pre>
+          </section>
+          <section>
+            <h2>Add Immutability to JS - Nested Objects</h2>
             <pre><code class="hljs">
 var x, y;
 x = Immutable.fromJS([1, {'test': 2}, 3]);
@@ -198,8 +232,7 @@ console.log(y.get(1).toJS());
             <li class="fragment">
               Please don't create globals
               <ul>
-                 <li class="fragment">...Outside of config settings</li>
-                 <li class="fragment">...Alright! Just don't modify them!</li>
+                 <li class="fragment">...Outside of (immutable) config settings</li>
               </ul>
             </li>
           </ol>
@@ -208,7 +241,7 @@ console.log(y.get(1).toJS());
         <section>
           <h2>Credits</h2>
           <ul>
-            <li><a href="https://github.com/hakimel/reveal.js">Reveal.js (Slides)</a></li>
+            <li><a href="https://github.com/hakimel/reveal.js">Reveal.js</a> (Slides)</li>
             <li><a href="http://www.dictionary.com">Dictionary.com</a>, for all your dictionary needs!</li>
             <li><a href="https://facebook.github.io/immutable-js/">Immutable</a></li>
             <li>Code syntax highlighting courtesy of <a href="http://softwaremaniacs.org/soft/highlight/en/description/">highlight.js</a>.</li>
