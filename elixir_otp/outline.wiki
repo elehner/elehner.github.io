@@ -1,0 +1,94 @@
+===Outline===
+==Intro==
+- What is Erlang/OTP?
+  - Created 1986; Open-sourced 1998
+  - Created by Joe Armstrong at Ericsson
+  - Created with distributed computing in mind
+    - Fault-tolerant
+    - High availability
+    - Easily Distributable
+    - Able to be hot-swapped
+  - "Let it fail"
+    - code should be made to be recoverable
+    - Even the VM can restart on it's own in a crash
+- What is Elixir?
+  - Root's in Erlang/OTP
+    - Uses BEAM Bytecode
+  - José Valim in 2011
+  - Ruby inspired
+- What's Elixir look like?
+  - Functional
+    - Tail recursion is a thing
+  - Immutable data
+  - Specifics:
+    - Basic primitives
+      - Integers, Floats, Lists, binaries, Strings (binaries), Char Lists (lists)
+      - Strings (doble quote) are binaries (supports utf-8)
+      - Char lists are what the name implies
+      - Atoms
+        - constants whose name is the value
+        - not garbage collected
+        - allocating in a loop (:a1, :a2, ...) can crash the VM
+    - Modules and functions
+      - Module and function declaration like ruby
+      - Can also be lispy
+      - Pattern matched functions
+        - examples would be helpful if quick
+      - Guard statements for additional matching!
+    - Concept of strict vs not strict equality
+      - Floats and Ints only
+      - 1.0 == 1
+      - 1.0 !== 1
+    - Pipes!
+      - |>
+      - pipes the preceding value into teh proceeding function
+      - Turns this: `third(second(first())))`
+      - Into this: `first |> second |> third`
+    - Function parentheses sometimes optional
+      - It is recommended when the code is without context (pipes)
+        - can result in a compiler error from Elixir
+      - needed when piping multiple values: `5 |> Kernel.*(8)`
+    - if, case, and cond
+      - if, case -> same as any other language
+      - cond -> pattern matching for control flow!
+    - try and rescue
+      - Essentially try and catch
+      - Not too commonly used
+      - Elixir/Erlang statement -> "Let it fail"
+    - Erlang interop
+      - Can access any erlang function in Elixir
+      - Precede erlang module name with ":"
+      - Access it like any module
+      - `:sys.get_state(pid)`
+    - There is more...
+    - Now for something simple! (Maybe)
+      - GCD in elixir?
+==OTP==
+- What's OTP?
+  - Libraries
+  - Tools
+  - Design Principles
+  - Erlang's bread and butter
+  - Helps build concise, sensible, distributed systems
+- Supervisors and Workers
+- Supervisor trees
+- Application logic
+- Elixir baked in goodies
+  - Tasks
+  - Agents
+==Examples==
+==Fin==
+- Tons more than I can go into
+  - other behaviors
+    - non-Elixir-fied ones too (fsm, tcp)
+  - live upgrades/packaging
+    - from what I've read, harder to implement in real system then is commonly sold
+  - writing your own behaviors
+    - Elixir is trying to push GenStage for flow control
+  - Advanced monitoring, tracing, and logging
+- Books and resourcees
+  - Elixir site
+  - Dave Thomas book
+  - little OTP book
+  - Steve Vinoski video: https://www.youtube.com/watch?v=PkHZPTn1brc
+  - ABC's of OTP videos: https://www.youtube.com/watch?v=4SCwubzqsVU
