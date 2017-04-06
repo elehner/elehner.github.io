@@ -8,9 +8,10 @@
     - High availability
     - Easily Distributable
     - Able to be hot-swapped
-  - "Let it fail"
+  - "Let it crash"
     - code should be made to be recoverable
     - Even the VM can restart on it's own in a crash
+    - "Have you tried turning it off and on again?"
 - What is Elixir?
   - Root's in Erlang/OTP
     - Uses BEAM Bytecode
@@ -54,7 +55,7 @@
     - try and rescue
       - Essentially try and catch
       - Not too commonly used
-      - Elixir/Erlang statement -> "Let it fail"
+      - Elixir/Erlang statement -> "Let it crash"
     - Erlang interop
       - Can access any erlang function in Elixir
       - Precede erlang module name with ":"

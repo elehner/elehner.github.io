@@ -24,8 +24,113 @@
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
+				<section>
+          <h1>Elixir/OTP</h1>
+          <h3>Sustainable distributed programming</h3>
+        </section>
+        <!-- Elixir intro -->
+				<section>
+          <h2>What is Erlang?</h2>
+					<ul>
+						<li>Created in 1986; Open sourced in 1998</li>
+						<li>Created by Joe Armstrong at Ericsson</li>
+            <li>Focus on fault tolerance and distribution</li>
+						<li>Let it crash</li>
+					</ul>
+        </section>
+				<section>
+          <h2>What is Elixir?</h2>
+					<ul>
+						<li>Created by José Valim in 2011</li>
+						<li>Compiles to BEAM Bytecode</li>
+						<li>Ruby inspired, Erlang powered</li>
+					</ul>
+        </section>
+        <!-- Elixir syntax skim -->
+				<section>
+          <h2>Basic tenents of Elixir</h2>
+					<ul>
+						<li>
+              Functional
+              <ul><li>tail call optimized</li><ul>
+            </li>
+						<li>Immutable</li>
+						<li>Dynamically typed</li>
+						<li>Pattern matching</li>
+					</ul>
+        </section>
+				<section>
+          <h2>Elixir intro - Types</h2>
+					<ul>
+						<li>Ints and floats</li>
+						<li>Strings</li>
+						<li>Char lists</li>
+            <li>Lists and maps</li>
+            <li>Binaries</li>
+            <li>Atoms</li>
+					</ul>
+        </section>
+				<section>
+          <h2>Elixir intro - Modules and functions</h2>
+					<pre><code class="hljs" data-trim contenteditable>
+defmodule Test do
+  def hello(:first), do: :hello
+  def hello(:second), do: :world
+  def hello(_) do
+    :why?
+  end
+end
+					</code></pre>
+        </section>
+				<section>
+          <h2>Elixir intro - Pipes</h2>
+					<pre><code class="hljs" data-trim contenteditable>
+third(second(first(param)))
+					</code></pre>
+          becomes
+					<pre><code class="hljs" data-trim contenteditable>
+param |> first |> second |> third
+					</code></pre>
+        </section>
+				<section>
+          <h2>Elixir intro - send and receive</h2>
+					<pre><code class="hljs" data-trim contenteditable>
+# creates process
+send(self(), :test)
+receive do
+  :test -> :response
+  _ -> :error
+end
+					</code></pre>
+        </section>
+        <!-- OTP intro -->
+				<section>
+          <h2>What is OTP?</h2>
+          <ul>
+            <li>Tools</li>
+            <li>Libraries</li>
+            <li>Design Patterns</li>
+            <li class="fragment">Erlang itself</li>
+          </ul>
+        </section>
+				<section>
+          <h2>Tools</h2>
+          <ul>
+            <li>:observer.start()</li>
+          </ul>
+        </section>
+				<section>
+          <h2>Libraries</h2>
+          <ul>
+            <li>GenServer</li>
+          </ul>
+        </section>
+				<section>
+          <h2>Design Patterns</h2>
+          <ul>
+            <li>Supervisor trees</li>
+          </ul>
+        </section>
 			</div>
 		</div>
 
