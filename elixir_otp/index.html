@@ -30,6 +30,14 @@
         </section>
         <!-- Elixir intro -->
 				<section>
+          <h2>What is Elixir?</h2>
+					<ul>
+						<li>Created by José Valim in 2011</li>
+						<li>Ruby inspired, Erlang powered</li>
+						<li>Compiles to BEAM Bytecode</li>
+					</ul>
+        </section>
+				<section>
           <h2>What is Erlang/OTP?</h2>
 					<ul>
 						<li>Created at Ericsson</li>
@@ -42,12 +50,12 @@
           </aside>
         </section>
 				<section>
-          <h2>What is Elixir?</h2>
-					<ul>
-						<li>Created by José Valim in 2011</li>
-						<li>Ruby inspired, Erlang powered</li>
-						<li>Compiles to BEAM Bytecode</li>
-					</ul>
+          <h2>Let it Crash!?</h2>
+          <img height=500px src="https://i.ytimg.com/vi/p85xwZ_OLX0/hqdefault.jpg"/>
+          <aside class="notes">
+            Solves a number of state based problems
+            You'd still catch the errors, but you'd just log them and get back to work.
+          </aside>
         </section>
         <!-- Elixir syntax skim -->
 				<section>
@@ -69,31 +77,24 @@
         </section>
 				<section>
           <h2>Elixir - Types</h2>
-					<ul>
-						<li>Ints and floats</li>
-            <li>Lists and Maps</li>
-						<li>Char lists</li>
-            <li>Binaries</li>
-						<li>Strings (Binaries)</li>
-            <li>Atoms</li>
-					</ul>
+					<p>All those hits from the 80's (except strings)</p>
+          <img height=450px src="https://media.giphy.com/media/ToMjGpu0xa3M2nHDKWA/giphy.gif"/>
           <aside class="notes">
-            Strings are binaries, allowing them to contain UTF-8 characters.
-            Atoms are direct values and not garbage collected. Upper limit exits.
+            Ints, floats, bools, lists, maps, char lists, binaries, strings, and atoms
           </aside>
         </section>
 				<section>
           <h2>Elixir - Modules and functions</h2>
 					<pre><code class="hljs elixir" data-trim contenteditable>
-            defmodule Test do
-              def hello(:hi), do: :world
-              def hello([h|t]), do: {:head, h}
+            defmodule Songs do
+              def hello(:its_me), do: :i_can_hear_you
+              def hello([h|t]), do: {:is_it_me_your_looking_for?, h}
               def hello(_) do
-                :why?
+                "I don't know why you say goodbye"
               end
             end
-            Test.hello(["of_list"]) # returns {:head, "of_list"}
-            Test == :"Elixir.Test"
+            # returns {:is_it_me_your_looking_for?, "No"}
+            Test.hello(["No"])
 					</code></pre>
           <aside class="notes">
             Module names always begin with a Capital letter. These are technically atoms that are prefixed with "Elixir.".
@@ -103,11 +104,11 @@
 				<section>
           <h2>Elixir - Pipes</h2>
 					<pre><code class="hljs elixir" data-trim contenteditable>
-            third(second(first(param)))
+            three(two(one("It's easy as")))
 					</code></pre>
           becomes
 					<pre><code class="hljs elixir" data-trim contenteditable>
-            param |> first |> second |> third
+            "It's easy as" |> one |> two |> three
 					</code></pre>
           <aside class="notes">
             Mention common styling (new lines)
@@ -148,11 +149,17 @@
         <!-- OTP intro -->
 				<section>
           <h2>What is OTP?</h2>
+          <p>No, not One True Pairing...</p>
+          <img height=450px src="https://media.giphy.com/media/tnRrXJ64HEO1a/giphy.gif"/>
+        </section>
+				<section>
+          <h2>What is OTP?</h2>
+          <p>Just OTP  (previously Open Telecom Platform)</p>
           <ul>
             <li>Design Patterns</li>
             <li>Tools</li>
             <li>Libraries</li>
-            <li class="fragment">Erlang itself</li>
+            <li>Erlang itself</li>
           </ul>
         </section>
 				<section>
@@ -176,11 +183,16 @@
         <!-- Behaviors intro -->
 				<section>
           <h2>Behaviors</h2>
+          <p>Because we all know that guy</p>
+          <img height=450px src="https://media.giphy.com/media/Q5C2uLdrBuBb2/giphy.gif"/>
+        </section>
+				<section>
+          <h2>Behaviors</h2>
           <ul>
-            <li>Fomalized common patterns</li>
+            <li>Formalized common patterns</li>
             <li>Production tested, architect approved</li>
             <li>Consistency</li>
-            <li>Fun fact: in erlang it's technically behavio[u]rs</li>
+            <li>Optionally with a "u" in Erlang</li>
           </ul>
         </section>
 				<section>
@@ -202,6 +214,16 @@
           </aside>
         </section>
         <!-- Behaviors walkthrough -->
+				<section>
+          <h2>Behaviors</h2>
+          <p>I know it's on your mind...</p>
+          <img height=450px src="https://media.giphy.com/media/3o6gDR5shoiaIUrGMg/giphy.gif"/>
+        </section>
+				<section>
+          <h2>Behaviors</h2>
+          <p>So let's walk through the origins of GenServer</p>
+          <img height=450px src="https://media.giphy.com/media/n3XHEXnRIojS/giphy.gif"/>
+        </section>
           <!-- Simple receive-loop pattern -->
         <section>
           <h2>Simple receive-loop</h2>
@@ -337,11 +359,12 @@
           <p>There are actually multiple callbacks (other than init, calls, and casts)</p>
           <ul>
             <li>init, handle_call, handle_cast</li>
-            <li>code_change -> called when new code is swapped in; useful for updating state to a new format</li>
-            <li>handle_info -> handles other types of messages (not call or cast, but direct)</li>
-            <li>terminate -> called when the server is stopped. Useful for cleanup, error logging, etc.</li>
+            <li>code_change: called when new code is swapped in</li>
+            <li>handle_info: handles other types of messages (not call or cast, but direct)</li>
+            <li>terminate: called when the server is stopped. Useful for cleanup, error logging, etc.</li>
           </ul>
           <aside class="notes">
+            code_change is useful when state_changes are present (formatting is different, something needs to be updated, etc.)
             I say required because Erlang requires them to be considered in the behvaior spec. There is also format_status, but that is not required by Erlang.
           </aside>
         </section>
@@ -356,6 +379,10 @@
 				<section>
           <h2>Supervisors</h2>
           <p>The managers of OTP (Yes, they are your supervisor...)</p>
+          <img height=450px src="https://media2.giphy.com/media/10DVcUchEQUdFu/giphy.gif"/>
+        </section>
+				<section>
+          <h2>Supervisors</h2>
           <ul>
             <li>Monitors "worker" processes</li>
             <li>Can be used to startup said processes</li>
