@@ -239,35 +239,15 @@
         </section>
             <!-- Show sample loop -->
         <section>
-          <h2>Simple receive-loop - KV example</h2>
-					<pre><code class="hljs elixir" data-trim contenteditable>
-            def loop(map) do # In KeyValue.ReceiveLoop
-              receive do
-                {:get, sender, key} ->
-                  send sender, {:ok, Map.get(map, key)}
-                  loop(map)
-                {:put, key, value} -> map |> Map.put(key, value) |> loop
-                {:delete, sender, key} ->
-                  {val, new_map} =  map |> Map.pop(key)
-                  send sender, {:ok, val}
-                  loop(new_map)
-                # No loop ends the process
-                :stop -> :ok
-                _ -> loop(map)
-              end
-            end
-					</code></pre>
-        </section>
-        <section>
           <h2>Simple receive loop</h2>
             <!-- Explain parts of loop that are common -->
           <p>
-            You have generic parts such as start, stop, initialize, loop, etc.
+            Some parts are generic (start, stop, initialize, loop, etc.)
           </p>
             <!-- Talk about specific (non-generic) parts -->
           <div  class="fragment">
             <p>
-              And specific parts:
+              While others are more specific parts:
             </p>
             <ul>
               <li>Which calls to handle and which to ignore</li>
@@ -311,21 +291,18 @@
           </aside>
         </section>
         <section>
-          <h2>GenServer - KV example</h2>
+          <h2>GenServer</h2>
 					<pre><code class="hljs elixir" data-trim contenteditable>
             def init(:ok), do: {:ok, %{}}
 
-            def handle_call({:get, key}, _from, map) do
-              {:reply, Map.get(map, key), map}
+            def handle_call({:action}, _from, state) do
+              ## create a "new_state" and a "response" synchronously
+              {:reply, response, new_state}
             end
 
-            def handle_call({:delete, key}, _from, map) do
-              {val, new_map} = map |> Map.pop(key)
-              {:reply, val, new_map}
-            end
-
-            def handle_cast({:put, key, value}, map) do
-              {:noreply, Map.put(map, key, value)}
+            def handle_cast({:update, some_change}, state) do
+              ## create a "new_state" asynchronously
+              {:noreply, new_state}
             end
           </code></pre>
           <aside class="notes">
@@ -450,6 +427,10 @@
             <h2>Supervision Trees</h2>
             <img style="border:none; box-shadow:none;" src="/images/supervision_tree/supervision_tree.svg"/>
           </section>
+        </section>
+        <section>
+          <h2>A quick look at the code for a KeyValue Server</h2>
+          <p>Showing off a ReceiveLoop, a GenServer, and Application Supervisor</p>
         </section>
 				<section>
           <h2>Let it Crash!</h2>
