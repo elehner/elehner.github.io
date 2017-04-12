@@ -27,6 +27,7 @@
 				<section>
           <h1>Elixir/OTP</h1>
           <h3>Sustainable distributed programming</h3>
+          <p>All gifs are from <a href="https://giphy.com/">Giphy</a></p>
         </section>
         <!-- Elixir intro -->
 				<section>
@@ -51,11 +52,8 @@
         </section>
 				<section>
           <h2>Let it Crash!?</h2>
-          <img height=500px src="https://i.ytimg.com/vi/p85xwZ_OLX0/hqdefault.jpg"/>
-          <aside class="notes">
-            Solves a number of state based problems
-            You'd still catch the errors, but you'd just log them and get back to work.
-          </aside>
+          <p>More on this later</p>
+          <a href="https://giphy.com/gifs/reboot-10lBhcF4eTJZWU"><img height=400px src="https://media.giphy.com/media/10lBhcF4eTJZWU/giphy.gif"/></a>
         </section>
         <!-- Elixir syntax skim -->
 				<section>
@@ -78,7 +76,7 @@
 				<section>
           <h2>Elixir - Types</h2>
 					<p>All those hits from the 80's (except strings)</p>
-          <img height=450px src="https://media.giphy.com/media/ToMjGpu0xa3M2nHDKWA/giphy.gif"/>
+          <a href="https://giphy.com/gifs/80s-guitar-mask-ToMjGpu0xa3M2nHDKWA"><img height=400px src="https://media.giphy.com/media/ToMjGpu0xa3M2nHDKWA/giphy.gif"/></a>
           <aside class="notes">
             Ints, floats, bools, lists, maps, char lists, binaries, strings, and atoms
           </aside>
@@ -94,7 +92,7 @@
               end
             end
             # returns {:is_it_me_your_looking_for?, "No"}
-            Test.hello(["No"])
+            Songs.hello(["No"])
 					</code></pre>
           <aside class="notes">
             Module names always begin with a Capital letter. These are technically atoms that are prefixed with "Elixir.".
@@ -116,31 +114,19 @@
           </aside>
         </section>
 				<section>
-          <h2>Elixir - Processes</h2>
-					<pre><code class="hljs elixir" data-trim contenteditable>
-            # Creates a new process that will close when function finishes
-            spawn(SomeModule, some_function, [arg1, arg2, etc])
-            # Same as above, but if function exits abnormally,
-            # it closes the calling process
-            spawn_link(SomeModule, some_function, [arg1, arg2, etc])
-					</code></pre>
-          <aside class="notes">
-            If the process exits normally (the call ends) it does not shut down the calling process.
-            You can use monitor to avoid linking like this.
-          </aside>
-        </section>
-				<section>
           <h2>Elixir - send and receive</h2>
           <p>Important Elixir/Erlang construct</p>
 					<pre><code class="hljs elixir" data-trim contenteditable>
-            # Sends a message to itself and then listens for it
-            send(self(), :test)
-            receive do
-              # Pattern matchs messages
-              :test -> :response
-              # Catch all for unexpected messages
-              _ -> :error
-            end
+            # You can create a new process using spawn or spawn_link
+            pid = spawn(fn ->
+              receive do # Wait for messages
+                # Pattern matchs messages
+                :test -> :response
+                # Catch all for unexpected messages
+                _ -> :error
+              end
+            end)
+            send(pid, :test) # Send message to the process
 					</code></pre>
           <aside class="notes">
             Uncaught messages wait in the mailbox of the process. If the number keeps growing, this can suck up all the memory. Unless you have a good reason not to, all receive loops should end with the catch all.
@@ -150,7 +136,7 @@
 				<section>
           <h2>What is OTP?</h2>
           <p>No, not One True Pairing...</p>
-          <img height=450px src="https://media.giphy.com/media/tnRrXJ64HEO1a/giphy.gif"/>
+          <a href="https://giphy.com/gifs/naruto-too-lazy-to-put-more-tags-ohhh-well-maybe-ill-edit-later-challenge-tGhU3C6ZfW0RG"><img height=400px src="https://media.giphy.com/media/tGhU3C6ZfW0RG/giphy.gif"/></a>
         </section>
 				<section>
           <h2>What is OTP?</h2>
@@ -184,29 +170,28 @@
 				<section>
           <h2>Behaviors</h2>
           <p>Because we all know that guy</p>
-          <img height=450px src="https://media.giphy.com/media/Q5C2uLdrBuBb2/giphy.gif"/>
+          <a href="https://giphy.com/gifs/Q5C2uLdrBuBb2"><img height=400px src="https://media.giphy.com/media/Q5C2uLdrBuBb2/giphy.gif"/></a>
         </section>
 				<section>
           <h2>Behaviors</h2>
           <ul>
             <li>Formalized common patterns</li>
-            <li>Production tested, architect approved</li>
             <li>Consistency</li>
-            <li>Optionally with a "u" in Erlang</li>
+            <li>Production tested, architect approved</li>
           </ul>
         </section>
 				<section>
           <h2>Standard Behaviors</h2>
           <ul>
             <li>
-              GenServer (:gen_server)
+              :gen_server (GenServer)
               <ul>
                 <li>Agents & Tasks</li>
               </ul>
             </li>
-            <li>GenEvent (:gen_event)</li>
-            <li>:gen_statem (replaces :gen_fsm)</li>
-            <li>Supervisor (:supervisor)</li>
+            <li>:gen_event (GenEvent)</li>
+            <li>:gen_statem - replaces :gen_fsm</li>
+            <li>:supervisor (Supervisor)</li>
           </ul>
           <aside class="notes">
             While the following covers out-of-the-box behaviors, you can also make your own.
@@ -216,19 +201,19 @@
         <!-- Behaviors walkthrough -->
 				<section>
           <h2>Behaviors</h2>
-          <p>I know it's on your mind...</p>
-          <img height=450px src="https://media.giphy.com/media/3o6gDR5shoiaIUrGMg/giphy.gif"/>
+          <p>But what sort of patterns get turned into behaviors?</p>
+          <a href="https://giphy.com/gifs/idk-shrug-inglorious-basterds-ALvdHigd2gBqw"><img height=400px src="https://media.giphy.com/media/ALvdHigd2gBqw/giphy.gif"/></a>
         </section>
 				<section>
           <h2>Behaviors</h2>
-          <p>So let's walk through the origins of GenServer</p>
-          <img height=450px src="https://media.giphy.com/media/n3XHEXnRIojS/giphy.gif"/>
+          <p>Let's walk through the origins of GenServer</p>
+          <a href="https://giphy.com/gifs/tour-has-grand-n3XHEXnRIojS"><img height=400px src="https://media.giphy.com/media/n3XHEXnRIojS/giphy.gif"/></a>
         </section>
           <!-- Simple receive-loop pattern -->
         <section>
           <h2>Simple receive-loop</h2>
           <p>
-            A basic Erlang (and Elixir!) structure.
+            A basic Elixir (and Erlang!) structure.
           </p>
 					<pre><code class="hljs elixir" data-trim contenteditable>
             defmodule ReceiveLoop do
@@ -250,7 +235,7 @@
             <!-- Show loop diagram -->
         <section>
           <h2>Simple receive loop</h2>
-          <img style="border:none; box-shadow:none;" src="/images/Receive_Loop.svg"/>
+          <img style="border:none; box-shadow:none;" src="/images/receive_loop.svg"/>
         </section>
             <!-- Show sample loop -->
         <section>
@@ -263,19 +248,15 @@
                   loop(map)
                 {:put, key, value} -> map |> Map.put(key, value) |> loop
                 {:delete, sender, key} ->
-                  {val, map} =  map |> Map.pop(key)
+                  {val, new_map} =  map |> Map.pop(key)
                   send sender, {:ok, val}
-                  loop(map)
+                  loop(new_map)
                 # No loop ends the process
                 :stop -> :ok
                 _ -> loop(map)
               end
             end
-
-            # How to call the function
-            pid = spawn(KeyValue.ReceiveLoop, :loop, [%{}])
-            send pid, {:put, "some_key", "some_value"}
-          </code></pre>
+					</code></pre>
         </section>
         <section>
           <h2>Simple receive loop</h2>
@@ -298,11 +279,11 @@
         </section>
         <section>
           <p>Where do we go from here?</p>
-          <img height=500px src="/images/thinking.jpeg"/>
+          <img height=450px src="/images/thinking.jpeg"/>
         </section>
         <section>
           <p>There must be a better way</p>
-          <img height=500px src="/images/better_way.jpeg"/>
+          <img height=450px src="/images/better_way.jpeg"/>
         </section>
           <!-- Expansion into GenServer Behavior -->
             <!-- Cleans up the code -->
@@ -356,12 +337,12 @@
         </section>
 				<section>
           <h2>GenServer - Required callbacks</h2>
-          <p>There are actually multiple callbacks (other than init, calls, and casts)</p>
+          <p>There are actually multiple callbacks</p>
           <ul>
             <li>init, handle_call, handle_cast</li>
-            <li>code_change: called when new code is swapped in</li>
-            <li>handle_info: handles other types of messages (not call or cast, but direct)</li>
-            <li>terminate: called when the server is stopped. Useful for cleanup, error logging, etc.</li>
+            <li><b>code_change</b>: Changes state after hot swap</li>
+            <li><b>handle_info</b>: handles non-call/cast messages</li>
+            <li><b>terminate</b>: called when the server is stopped.</li>
           </ul>
           <aside class="notes">
             code_change is useful when state_changes are present (formatting is different, something needs to be updated, etc.)
@@ -373,13 +354,13 @@
           <p>But what happens if it breaks down?...</p>
           <div class="fragment">
             <h2>Supervisors!</h2>
-            <img height=450px src="/images/supervisor.jpg"/>
+            <img height=400px src="/images/supervisor.jpg"/>
           </div>
         </section>
 				<section>
           <h2>Supervisors</h2>
           <p>The managers of OTP (Yes, they are your supervisor...)</p>
-          <img height=450px src="https://media2.giphy.com/media/10DVcUchEQUdFu/giphy.gif"/>
+          <a href="https://giphy.com/gifs/archer-supervisor-youre-not-my-10DVcUchEQUdFu"><img height=400px src="https://media2.giphy.com/media/10DVcUchEQUdFu/giphy.gif"/></a>
         </section>
 				<section>
           <h2>Supervisors</h2>
@@ -395,6 +376,7 @@
           </aside>
         </section>
           <!-- Different restart modes -->
+          <!-- Probably unnecessary for an introduction...
 				<section>
           <h2>Supervision Strategies</h2>
           <ul>
@@ -407,6 +389,7 @@
             For :simple_one_for_one, a decent example is DB connections, where connections should be dynamically added over time rather than instantiating one and just using that.
           </aside>
         </section>
+          -->
           <!-- Supervision trees to maintain the whole application -->
 				<section>
           <h2>Supervision Trees</h2>
@@ -425,6 +408,7 @@
             This continues until the VM is restarted, or the child that failed is considered "temporary" and no restarts are tried.
           </aside>
         </section>
+          <!-- Diagram -->
         <section>
           <section>
             <h2>Supervision Trees</h2>
@@ -467,7 +451,28 @@
             <img style="border:none; box-shadow:none;" src="/images/supervision_tree/supervision_tree.svg"/>
           </section>
         </section>
-          <!-- Diagram? -->
+				<section>
+          <h2>Let it Crash!</h2>
+          <p>Back to this</p>
+          <a href="https://giphy.com/gifs/reboot-10lBhcF4eTJZWU"><img height=400px src="https://media.giphy.com/media/10lBhcF4eTJZWU/giphy.gif"/></a>
+          <aside class="notes">
+            Solves a number of state based problems
+            You'd still catch the errors, but you'd just log them and get back to work.
+          </aside>
+        </section>
+				<section>
+          <h2>Let it Crash! (and restart)</h2>
+          <p><a href="http://ferd.ca/the-zen-of-erlang.html">Taken from "Zen of Erlang" talk given by Fred Hebert</a></p>
+          <img height=400px src="http://ferd.ca/static/img/zen-of-erlang/014.png"/>
+        </section>
+				<section>
+          <h2>Let it Crash! (and restart)</h2>
+          <img height=400px src="http://ferd.ca/static/img/zen-of-erlang/015.png"/>
+        </section>
+				<section>
+          <h2>Let it Crash! (and restart)</h2>
+          <img height=400px src="http://ferd.ca/static/img/zen-of-erlang/016.png"/>
+        </section>
         <!-- Fin -->
           <!-- What else is there to learn about? (everything) -->
         <section>
@@ -500,6 +505,9 @@
           <ul>
             <li><a href="https://www.youtube.com/watch?v=PkHZPTn1brc">A Peek Inside Erlang's OTP • Steve Vinoski</a></li>
             <li><a href="https://www.youtube.com/watch?v=4SCwubzqsVU">The ABCs of OTP - Jesse J. Anderson</a></li>
+            <li>
+              <a href="https://www.youtube.com/watch?v=4ZIPijEqrNI">The Zen Of Erlang - Fred Hebert</a> - The let it crash slides are from this talk.
+            </li>
           </ul>
         </section>
 			</div>
