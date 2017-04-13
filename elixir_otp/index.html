@@ -26,7 +26,7 @@
 			<div class="slides">
 				<section>
           <h1>Elixir/OTP</h1>
-          <h3>Sustainable distributed programming</h3>
+          <h3>Sustainable distributed development</h3>
           <p>All gifs are from <a href="https://giphy.com/">Giphy</a></p>
         </section>
         <!-- Elixir intro -->
@@ -57,7 +57,7 @@
         </section>
         <!-- Elixir syntax skim -->
 				<section>
-          <h2>Basic tenets of Elixir</h2>
+          <h2>Aspects of Elixir</h2>
           <p>Actually, these are the same for Erlang</p>
 					<ul>
 						<li>
@@ -79,6 +79,7 @@
           <a href="https://giphy.com/gifs/80s-guitar-mask-ToMjGpu0xa3M2nHDKWA"><img height=400px src="https://media.giphy.com/media/ToMjGpu0xa3M2nHDKWA/giphy.gif"/></a>
           <aside class="notes">
             Ints, floats, bools, lists, maps, char lists, binaries, strings, and atoms
+            false is sensible (nil or false only)
           </aside>
         </section>
 				<section>
@@ -99,6 +100,7 @@
             All variable, function, and attribute names begin lower-cased
           </aside>
         </section>
+        <!-- a little too specific
 				<section>
           <h2>Elixir - Pipes</h2>
 					<pre><code class="hljs elixir" data-trim contenteditable>
@@ -113,6 +115,7 @@
             First variable piped in, the rest are in parens.
           </aside>
         </section>
+        -->
 				<section>
           <h2>Elixir - send and receive</h2>
           <p>Important Elixir/Erlang construct</p>
@@ -136,7 +139,7 @@
 				<section>
           <h2>What is OTP?</h2>
           <p>No, not One True Pairing...</p>
-          <a href="https://giphy.com/gifs/naruto-too-lazy-to-put-more-tags-ohhh-well-maybe-ill-edit-later-challenge-tGhU3C6ZfW0RG"><img height=400px src="https://media.giphy.com/media/tGhU3C6ZfW0RG/giphy.gif"/></a>
+          <a href="https://giphy.com/gifs/otp-vkBCgoPCLUZbO"><img height=400px src="https://media.giphy.com/media/vkBCgoPCLUZbO/giphy.gif"/></a>
         </section>
 				<section>
           <h2>What is OTP?</h2>
@@ -160,10 +163,12 @@
         </section>
 				<section>
           <h2>Other OTP goodies</h2>
+          <p>Libraries and tools for</p>
           <ul>
             <li>Management, observations, & monitoring</li>
             <li>Debugging, static analysis, testing</li>
             <li>much more</li>
+            <li class="fragment">But let's go back to behaviors</li>
           </ul>
         </section>
         <!-- Behaviors intro -->
@@ -274,7 +279,6 @@
           <h2>GenServers!</h2>
           <p>The advanced receive-loop</p>
           <ul>
-            <li>Formats the code</li>
             <li>Makes life simpler
               <ul>
                 <li>Setting up sync/async handled</li>
@@ -282,8 +286,8 @@
                 <li>etc.</li>
               </ul>
             </li>
+            <li>Formats the code</li>
             <li>Catches many edge cases not discussed</li>
-            <li>Elixir defaults all required functions for you</li>
           </ul>
           <aside class="notes">
             Catching messages is important. Refer back to receive loop.
@@ -293,16 +297,21 @@
         <section>
           <h2>GenServer</h2>
 					<pre><code class="hljs elixir" data-trim contenteditable>
-            def init(:ok), do: {:ok, %{}}
+            defmodule GenServerEx do
+              use GenServer
+              ## Stuff ...
+              def init(:ok), do: {:ok, %{}}
 
-            def handle_call({:action}, _from, state) do
-              ## create a "new_state" and a "response" synchronously
-              {:reply, response, new_state}
-            end
+              def handle_call({:action}, _from, state) do
+                ## create a "new_state" and a "response" synchronously
+                {:reply, response, new_state}
+              end
 
-            def handle_cast({:update, some_change}, state) do
-              ## create a "new_state" asynchronously
-              {:noreply, new_state}
+              def handle_cast({:update, some_change}, state) do
+                ## create a "new_state" asynchronously
+                {:noreply, new_state}
+              end
+              ## More stuff ...
             end
           </code></pre>
           <aside class="notes">
@@ -314,12 +323,13 @@
         </section>
 				<section>
           <h2>GenServer - Required callbacks</h2>
-          <p>There are actually multiple callbacks</p>
+          <p>There are 6 required GenServer callbacks</p>
           <ul>
             <li>init, handle_call, handle_cast</li>
-            <li><b>code_change</b>: Changes state after hot swap</li>
+            <li><b>code_change</b>: changes state after hot swap</li>
             <li><b>handle_info</b>: handles non-call/cast messages</li>
             <li><b>terminate</b>: called when the server is stopped.</li>
+            <li class="fragment">Elixir defaults all these required functions for you!</li>
           </ul>
           <aside class="notes">
             code_change is useful when state_changes are present (formatting is different, something needs to be updated, etc.)
@@ -342,10 +352,9 @@
 				<section>
           <h2>Supervisors</h2>
           <ul>
-            <li>Monitors "worker" processes</li>
-            <li>Can be used to startup said processes</li>
-            <li>Should something break, can selectively restart processes</li>
-            <li>The supervisor may also not want to restart the process</li>
+            <li>Monitors worker and other supervisor processes</li>
+            <li>Can be used to startup processes</li>
+            <li>Can selectively restart processes</li>
             <li>Has multiple restart patterns (strategies)</li>
           </ul>
           <aside class="notes">
@@ -373,8 +382,8 @@
           <p>Supervision is rarely done by one process</p>
           <ul>
             <li>Supervisors for supervisors</li>
-            <li>Multiple supervisors provide failure isolation</li>
-            <li>Supervisors are restarted themselves should something go wrong</li>
+            <li>Failure isolation</li>
+            <li>Multiple levels of restarts</li>
           </ul>
           <aside class="notes">
             A case where something goes wrong with the supervisor: a supervised module is failing continuously.
@@ -428,10 +437,6 @@
             <img style="border:none; box-shadow:none;" src="/images/supervision_tree/supervision_tree.svg"/>
           </section>
         </section>
-        <section>
-          <h2>A quick look at the code for a KeyValue Server</h2>
-          <p>Showing off a ReceiveLoop, a GenServer, and Application Supervisor</p>
-        </section>
 				<section>
           <h2>Let it Crash!</h2>
           <p>Back to this</p>
@@ -453,6 +458,11 @@
 				<section>
           <h2>Let it Crash! (and restart)</h2>
           <img height=400px src="http://ferd.ca/static/img/zen-of-erlang/016.png"/>
+        </section>
+        <section>
+          <h2>A quick look at the code for a KeyValue Server</h2>
+          <p>Showing off a ReceiveLoop, a GenServer, and Application Supervisor</p>
+          <p>(assuming there's time)</p>
         </section>
         <!-- Fin -->
           <!-- What else is there to learn about? (everything) -->
