@@ -223,16 +223,17 @@
 					<pre><code class="hljs elixir" data-trim contenteditable>
             defmodule ReceiveLoop do
               ## Stuff ...
-
               def loop(state) do
                 receive do
                   ## Handle Calls
-                  :continue -> loop(state)
+                  {:continue, sender} ->
+                    send(sender, response)
+                    loop(state)
+                  :async_call -> loop(state)
                   ## Call loop again or exit (Just don't call loop!)
                   :exit -> :ok
                 end
               end
-
               ## More stuff ...
             end
 					</code></pre>
