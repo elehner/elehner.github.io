@@ -2,776 +2,661 @@
 <html lang="en">
 
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Resume of Eric Lehner</title>
-  <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
-  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-  <style type="text/css">
-    @import url(//fonts.googleapis.com/css?family=Open+Sans:400,600,700,800);
-    @charset "utf-8";
-
-    @-webkit-viewport {
-      width: device-width;
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eric Lehner — Software Engineer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
-    @-moz-viewport {
-      width: device-width;
-    }
-
-    @-ms-viewport {
-      width: device-width;
-    }
-
-    @-o-viewport {
-      width: device-width;
-    }
-
-    @viewport {
-      width: device-width;
+    :root {
+      --bg: #F5F2EC;
+      --surface: #FFFFFF;
+      --surface-warm: #EDEBE3;
+      --accent: #B5541E;
+      --accent-light: #F5EBE2;
+      --navy: #1E2B3A;
+      --text: #2A2520;
+      --text-muted: #7A726B;
+      --border: #DDD8CE;
     }
 
     body {
-      font-family: 'Open Sans', Arial, Tahoma;
-      font-weight: 400;
-      color: #363636;
-      background: #334960;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 15px;
+      line-height: 1.6;
     }
 
-    blockquote {
-      font-size: 1em;
+    a {
+      color: var(--accent);
+      text-decoration: none;
     }
 
-    .container {
-      margin-top: 80px;
-      margin-bottom: 15px;
-      background: #fff;
+    a:hover {
+      text-decoration: underline;
     }
 
-    #photo-header {
-      margin-top: -75px;
+    /* ── Page wrapper ── */
+    .page {
+      max-width: 980px;
+      margin: 2.5rem auto;
+      padding: 0 1.25rem 3rem;
     }
 
-    #photo {
-      width: 160px;
-      height: 160px;
-      border-radius: 50%;
+    /* ── Header ── */
+    .header {
+      background: var(--navy);
+      color: white;
+      border-radius: 14px;
+      padding: 2.5rem 2.5rem 2rem;
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      margin-bottom: 1.75rem;
+      position: relative;
       overflow: hidden;
-      padding: 5px;
-      background: #334960;
-      display: inline-block;
     }
 
-    #photo img {
-      width: 150px;
-      height: 150px;
+    .header::before {
+      content: '';
+      position: absolute;
+      top: -50px;
+      right: -40px;
+      width: 220px;
+      height: 220px;
+      background: var(--accent);
+      opacity: 0.13;
       border-radius: 50%;
-    }
-
-    #text-header h1 {
-      margin: 0;
-      padding: 0;
-      font-size: 1.5em;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: -1px;
-    }
-
-    #text-header h1::first-line {
-      font-size: 1.5em;
-      font-weight: 800;
-      line-height: 1.5em;
-    }
-
-    #text-header h1 span {
-      color: #334960;
-      opacity: 0.7;
-    }
-
-    #text-header h1 sup {
-      opacity: 0.5;
-    }
-
-    #text-header:after {
-      width: 100%;
-      height: 3px;
-      border-bottom: 1px solid #ddd;
-      margin-top: 15px;
-      content: '';
-      display: block;
-    }
-
-    .box {
-      padding-bottom: 10px;
-      margin-bottom: 25px;
-    }
-
-    .box h2 {
-      color: #227c74;
-      font-size: 1.5em;
-      font-weight: 700;
-      text-transform: uppercase;
-    }
-
-    #awards,
-    #education {
-      margin-top: 20px;
-      margin-bottom: 0;
-      position: relative;
-      padding: 1em 0;
-      list-style: none;
-    }
-
-    #awards:before,
-    #education:before {
-      width: 5px;
-      height: 100%;
-      position: absolute;
-      left: 35px;
-      top: 0;
-      content: ' ';
-      display: block;
-      background: #32475c;
-      background: -moz-linear-gradient(top, #ffffff 0%, #32475c 7%, #32475c 89%, #ffffff 100%);
-      background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ffffff), color-stop(7%, #32475c), color-stop(89%, #32475c), color-stop(100%, #ffffff));
-      background: -webkit-linear-gradient(top, #ffffff 0%, #32475c 7%, #32475c 89%, #ffffff 100%);
-      background: -o-linear-gradient(top, #ffffff 0%, #32475c 7%, #32475c 89%, #ffffff 100%);
-      background: -ms-linear-gradient(top, #ffffff 0%, #32475c 7%, #32475c 89%, #ffffff 100%);
-      background: linear-gradient(to bottom, #ffffff 0%, #32475c 7%, #32475c 89%, #ffffff 100%);
-      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#ffffff', GradientType=0);
-    }
-
-    #awards li,
-    #education li {
-      width: 100%;
-      z-index: 2;
-      position: relative;
-      float: left;
-    }
-
-    #awards .year,
-    #education .year {
-      width: 14%;
-      background: #fff;
-      padding: 10px;
-      font-weight: 700;
-      display: inline-block;
-    }
-
-    #awards .description,
-    #education .description {
-      width: 83%;
-      display: inline-block;
-      background: #eee;
-      margin-bottom: 10px;
-      position: relative;
-      padding: 10px;
-      border-bottom: 1px solid #ccc;
-      border-right: 1px solid #ccc;
-    }
-
-    #awards .description:after,
-    #education .description:after {
-      content: '';
-      position: absolute;
-      top: 15px;
-      right: 0;
-      left: -16px;
-      height: 0;
-      width: 0;
-      border: solid transparent;
-      border-right-color: #eee;
-      border-width: 8px;
       pointer-events: none;
     }
 
-    #awards .description h3,
-    #education .description h3 {
-      font-size: 1.2em;
-      margin: 0;
-      padding: 0;
+    .header::after {
+      content: '';
+      position: absolute;
+      bottom: -70px;
+      right: 100px;
+      width: 170px;
+      height: 170px;
+      background: var(--accent);
+      opacity: 0.07;
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .avatar {
+      width: 112px;
+      height: 112px;
+      border-radius: 50%;
+      border: 3px solid var(--accent);
+      object-fit: cover;
+      flex-shrink: 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    .header-text {
+      position: relative;
+      z-index: 1;
+    }
+
+    .header-text h1 {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 2.5rem;
       font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      color: white;
     }
 
-    #awards .description p,
-    #education .description p {
-      margin-top: 5px;
-      padding: 0;
+    .header-text .tagline {
+      color: rgba(255, 255, 255, 0.65);
+      font-size: 0.8rem;
+      font-weight: 500;
+      margin-top: 0.4rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
     }
 
-    .job {
-      margin-bottom: 15px;
+    .header-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem 1.25rem;
+      margin-top: 1rem;
     }
 
-    .job .details {
-      margin-left: 3%;
-      width: 95%;
-      padding: 10px;
-      margin-bottom: 10px;
-      background: #eee;
-      border-bottom: 1px solid #ccc;
-      border-right: 1px solid #ccc;
+    .header-links a,
+    .header-links span {
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 0.82rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: color 0.15s;
     }
 
-    .job .where {
-      font-size: 1.2em;
-      font-weight: bold;
+    .header-links a:hover {
+      color: white;
+      text-decoration: none;
     }
 
-    .job .year {
-      opacity: 0.7;
+    .header-links i {
+      font-size: 0.8rem;
+      color: var(--accent);
+      opacity: 0.85;
     }
 
-    .job .profession {
-      font-size: 1.2em;
-      font-weight: bold;
+    /* ── Two-column layout ── */
+    .layout {
+      display: grid;
+      grid-template-columns: 1fr 296px;
+      gap: 1.75rem;
+      align-items: start;
     }
 
-    .job .description {
-      line-height: 1.5em;
+    /* ── Section cards ── */
+    .section {
+      background: var(--surface);
+      border-radius: 12px;
+      padding: 1.75rem;
+      margin-bottom: 1.75rem;
     }
 
-    .job .highlights {
-      padding: 5px 0;
-      font-weight: bold;
-    }
-
-    .job .job-details {
-      padding-left: 5%;
-      width: 100%;
-    }
-
-    .publication {
+    .section:last-child {
       margin-bottom: 0;
     }
 
-    .publication .name {
-      font-size: 1em;
-      font-weight: bold;
+    .section-title {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
     }
 
-    .publication .year {
-      opacity: 0.7;
+    .section-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
     }
 
-    .publication p {
-      margin: 0;
-      padding-top: 10px;
+    /* ── About ── */
+    .about p {
+      line-height: 1.8;
+      color: var(--text);
     }
 
-    .contact-item {
-      width: 100%;
-      float: left;
+    /* ── Work experience ── */
+    .job {
+      padding-bottom: 1.5rem;
+      margin-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border);
     }
 
-    .contact-item .icon {
-      padding: 10px;
-      border-right: 1px solid #ccc;
-      border-bottom: 1px solid #ccc;
-      color: #32475c;
-      background: #eee;
-    }
-
-    .contact-item:last-child .icon {
+    .job:last-child {
+      padding-bottom: 0;
+      margin-bottom: 0;
       border-bottom: none;
     }
 
-    .contact-item .title {
-      width: 80%;
-      width: calc(100% - 55px);
-      font-weight: 700;
-      opacity: 0.9;
+    .job-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 1rem;
     }
 
-    .contact-item .title.only {
-      margin-top: 10px;
-    }
-
-    .contact-item .description {
-      width: 80%;
-      width: calc(100% - 55px);
-      color: #334960;
-    }
-
-    .item-interests,
-    .item-skills {
-      height: 30px;
-      color: #334960;
-      padding: 5px 10px;
-      margin-bottom: 5px;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      font-size: 1.1em;
+    .job-company {
       font-weight: 600;
+      font-size: 1.02rem;
+      color: var(--navy);
     }
 
-    .interest,
-    .skill {
-      color: #fff;
-      display: inline-block;
-      margin-right: 5px;
-      margin-bottom: 5px;
-      padding: 5px 10px;
-      background: #32475c;
-      position: relative;
-      font-size: .85em;
+    .job-period {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      white-space: nowrap;
+      flex-shrink: 0;
     }
 
-    .skill-level {
-      background-color: #227c74;
-      border-radius: 4px;
-      color: #fff;
-      padding: 1px 8px;
-      font-size: .75em;
-      position: absolute;
-      margin: 1px 10px;
+    .job-roles {
+      margin-top: 0.3rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
     }
 
-    #language-skills .skill {
-      margin: 10px 0;
-      padding-bottom: 10px;
-      border-bottom: 1px solid #eee;
-    }
-  </style>
-  <style type="text/css" media="print">
-    body {
-      font-size: .95em;
-      -webkit-print-color-adjust: exact;
+    .job-role {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 1rem;
     }
 
-    a[href]:after {
-      content: none !important;
+    .job-role-title {
+      font-size: 0.9rem;
+      color: var(--accent);
+      font-weight: 500;
     }
 
-    #photo {
-      display: none;
+    .job-role-period {
+      font-size: 0.77rem;
+      color: var(--text-muted);
     }
 
-    .box {
-      margin-bottom: -10px;
+    .job-desc {
+      font-size: 0.88rem;
+      color: #4A4540;
+      line-height: 1.7;
+      margin-top: 0.65rem;
     }
 
-    .col-sm-5 {
-      width: 40%;
-      padding: 0 15px;
+    /* ── Skills ── */
+    .skill-group {
+      margin-bottom: 1.1rem;
     }
 
-    .col-sm-7 {
-      width: 60%;
-      padding: 0 15px;
+    .skill-group:last-child {
+      margin-bottom: 0;
     }
 
-    .skills .col-sm-offset-1,
-    .interests .col-sm-offset-1 {
-      margin-top: -10px;
-      margin-bottom: 5px;
+    .skill-group-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      margin-bottom: 0.5rem;
     }
 
-    #education {
-      margin: 0;
-      margin-bottom: -20px;
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
     }
 
-    #awards:before,
-    #education:before {
-      background: none;
+    .tag {
+      background: var(--navy);
+      color: white;
+      font-size: 0.77rem;
+      font-weight: 500;
+      padding: 0.25rem 0.65rem;
+      border-radius: 5px;
+      letter-spacing: 0.01em;
     }
 
-    #awards .description,
-    #education .description,
-    .job .details {
-      border: 1px solid #eee;
+    .tag.muted {
+      background: var(--surface-warm);
+      color: var(--navy);
     }
 
-    .publication,
-    .publication .panel-heading,
-    .publication .name {
-      margin: 0;
-      padding: 0 5px;
-      border: none;
+    /* ── Education ── */
+    .edu-item {
+      margin-bottom: 1.1rem;
     }
 
-    .publication .panel-body {
-      padding: 0 10px;
-      margin: 0;
+    .edu-item:last-child {
+      margin-bottom: 0;
     }
 
-    .badge {
-      margin: 0;
+    .edu-school {
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--navy);
     }
 
-    .list-group-item {
-      border: none;
-      margin: 0;
-      padding: 5px 15px;
+    .edu-degree {
+      font-size: 0.87rem;
+      color: var(--text);
+      margin-top: 0.1rem;
     }
 
-    .list-group-item:after {
-      content: '';
-      position: absolute;
-      top: 8px;
-      right: 0;
-      left: -1px;
-      height: 0;
-      width: 0;
-      border: solid transparent;
-      border-right-color: #999;
-      border-width: 4px;
-      pointer-events: none;
+    .edu-meta {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-top: 0.1rem;
+    }
+
+    /* ── Contact ── */
+    .contact-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+
+    .contact-row {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      font-size: 0.87rem;
+    }
+
+    .contact-row i {
+      width: 16px;
+      text-align: center;
+      color: var(--accent);
+      font-size: 0.82rem;
+      flex-shrink: 0;
+    }
+
+    .contact-row a {
+      color: var(--text);
+    }
+
+    .contact-row a:hover {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    /* ── Awards ── */
+    .award-item {
+      padding-bottom: 0.85rem;
+      margin-bottom: 0.85rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .award-item:last-child {
+      padding-bottom: 0;
+      margin-bottom: 0;
+      border-bottom: none;
+    }
+
+    .award-name {
+      font-weight: 600;
+      font-size: 0.88rem;
+      color: var(--navy);
+    }
+
+    .award-meta {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-top: 0.15rem;
+    }
+
+    /* ── Publication ── */
+    .pub-title {
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--navy);
+      line-height: 1.4;
+    }
+
+    .pub-venue {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-top: 0.2rem;
+    }
+
+    .pub-desc {
+      font-size: 0.83rem;
+      color: var(--text);
+      line-height: 1.6;
+      margin-top: 0.5rem;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 700px) {
+      .header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.1rem;
+        padding: 2rem 1.5rem 1.75rem;
+      }
+
+      .layout {
+        grid-template-columns: 1fr;
+      }
+
+      .job-header,
+      .job-role {
+        flex-direction: column;
+        gap: 0.1rem;
+      }
+    }
+
+    /* ── Print ── */
+    @media print {
+      body {
+        background: white;
+        font-size: 12px;
+      }
+
+      .page {
+        margin: 0;
+        padding: 0;
+        max-width: 100%;
+      }
+
+      .header {
+        border-radius: 0;
+        page-break-inside: avoid;
+      }
+
+      .section {
+        box-shadow: none;
+        page-break-inside: avoid;
+      }
+
+      a::after {
+        content: none !important;
+      }
+
+      .avatar {
+        display: none;
+      }
     }
   </style>
 </head>
 
 <body>
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-12">
-        <div id="photo-header" class="text-center">
-          <!-- PHOTO (AVATAR) -->
-          <div id="photo">
-            <img src="snapshot.png" alt="avatar">
-          </div>
-          <div id="text-header">
-            <h1>Eric Lehner<br><span>Programmer</span></h1>
-          </div>
+  <div class="page">
+
+    <!-- HEADER -->
+    <header class="header">
+      <img class="avatar" src="snapshot.png" alt="Eric Lehner">
+      <div class="header-text">
+        <h1>Eric Lehner</h1>
+        <div class="tagline">Senior Software Engineer</div>
+        <div class="header-links">
+          <span><i class="fa-solid fa-location-dot"></i> Tonawanda, NY</span>
+          <a href="tel:+17168677959"><i class="fa-solid fa-phone"></i> (716) 867-7959</a>
+          <a href="mailto:ericjlehner@gmail.com"><i class="fa-solid fa-envelope"></i> ericjlehner@gmail.com</a>
+          <a href="http://github.com/elehner" target="_blank"><i class="fa-brands fa-github"></i> elehner</a>
+          <a href="https://www.linkedin.com/pub/eric-lehner/34/20a/56b" target="_blank"><i
+              class="fa-brands fa-linkedin"></i> LinkedIn</a>
         </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-xs-12 col-sm-7">
-        <!-- ABOUT ME -->
-        <div class="box">
-          <h2><i class="fa fa-user ico"></i> About</h2>
-          <p>Full stack principal developer, working at connectRN. Currently living in Tonawanda, NY.</p>
+    </header>
+
+    <div class="layout">
+
+      <!-- ── LEFT COLUMN ── -->
+      <main>
+
+        <!-- About -->
+        <div class="section about">
+          <div class="section-title">About</div>
+          <p>Senior software engineer on the payments team at GlossGenius, building and scaling payment infrastructure.
+            Full stack developer with over a decade of experience across healthtech and consumer software, focused on
+            backend systems, API design, and cross-team collaboration. I enjoy mentoring engineers and driving complex
+            technical work from design through delivery.</p>
         </div>
-        <!-- WORK EXPERIENCE -->
-        <div class="box">
-          <h2><i class="fa fa-suitcase ico"></i> Work Experience</h2>
-          <div class="job clearfix">
-            <div class="row">
-              <div class="details">
-                <div class="where">connectRN</div>
-                <div class="address">
-                  <a href="https://www.connectrn.com/" target="_blank"><i class="fa fa-globe ico"></i>
-                    https:&#x2F;&#x2F;www.connectrn.com&#x2F;</a>
-                </div>
-                <div class="year">November 2022 – October 2024</div>
-              </div>
+
+        <!-- Work Experience -->
+        <div class="section">
+          <div class="section-title">Work Experience</div>
+
+          <!-- GlossGenius -->
+          <div class="job">
+            <div class="job-header">
+              <div class="job-company">GlossGenius</div>
+              <div class="job-period">Dec 2024 – Present</div>
             </div>
-            <div class="row">
-              <div class="job-details col-xs-11">
-                <div class="profession">Principal Developer</div>
+            <div class="job-roles">
+              <div class="job-role">
+                <span class="job-role-title">Senior Software Engineer</span>
               </div>
             </div>
           </div>
-          <div class="job clearfix">
-            <div class="row">
-              <div class="details">
-                <div class="where">athenahealth</div>
-                <div class="address">
-                  <a href="http:&#x2F;&#x2F;www.athenahealth.com&#x2F;" target="_blank"><i class="fa fa-globe ico"></i>
-                    http:&#x2F;&#x2F;www.athenahealth.com&#x2F;</a>
-                </div>
-                <div class="year">November 2015 – November 2022</div>
-              </div>
+
+          <!-- connectRN -->
+          <div class="job">
+            <div class="job-header">
+              <div class="job-company">connectRN</div>
+              <div class="job-period">Nov 2022 – Oct 2024</div>
             </div>
-            <div class="row">
-              <div class="job-details col-xs-11">
-                <div class="profession">Lead Developer</div>
-                <div class="description">
-                  <div class="year">November 2020 – November 2022</div>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="job-details col-xs-11">
-                <div class="profession">Senior Developer</div>
-                <div class="description">
-                  <div class="year">February 2018 - November 2020</div>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="job-details col-xs-11">
-                <div class="profession">Developer</div>
-                <div class="description">
-                  <div class="year">November 2015 - February 2018</div>
-                </div>
+            <div class="job-roles">
+              <div class="job-role">
+                <span class="job-role-title">Principal Developer</span>
               </div>
             </div>
           </div>
-          <div class="job clearfix">
-            <div class="row">
-              <div class="details">
-                <div class="where">MITRE</div>
-                <div class="address">
-                  <a href="http:&#x2F;&#x2F;mitre.org" target="_blank"><i class="fa fa-globe ico"></i>
-                    http:&#x2F;&#x2F;mitre.org</a>
-                </div>
-                <div class="year">May 2014 – November 2015</div>
-              </div>
+
+          <!-- athenahealth -->
+          <div class="job">
+            <div class="job-header">
+              <div class="job-company">athenahealth</div>
+              <div class="job-period">Nov 2015 – Nov 2022</div>
             </div>
-            <div class="row">
-              <div class="job-details col-xs-11">
-                <div class="profession">Software Engineer</div>
-                <div class="description">
-                  Worked as a Software Developer in MITRE developing solutions with technologies varying from Java to
-                  HTML/CSS/JS. For most of the position, I spent my time in web development building and maintaining
-                  open source health services technologies.
-                  <div class="highlights">Highlights</div>
-                  <ul class="list-group">
-                    <li class="list-group-item">Earned a Program Recognitiion Award.</li>
-                    <li class="list-group-item">Have received recognition inside the company for achievements from
-                      without (having won a hackathon and placed second in another).</li>
-                  </ul>
-                </div>
+            <div class="job-roles">
+              <div class="job-role">
+                <span class="job-role-title">Lead Developer</span>
+                <span class="job-role-period">Nov 2020 – Nov 2022</span>
+              </div>
+              <div class="job-role">
+                <span class="job-role-title">Senior Developer</span>
+                <span class="job-role-period">Feb 2018 – Nov 2020</span>
+              </div>
+              <div class="job-role">
+                <span class="job-role-title">Developer</span>
+                <span class="job-role-period">Nov 2015 – Feb 2018</span>
               </div>
             </div>
           </div>
-          <div class="job clearfix">
-            <div class="row">
-              <div class="details">
-                <div class="where">SUNY at Buffalo Department of Computer Science and Engineering</div>
-                <div class="address">
-                  <a href="https:&#x2F;&#x2F;www.buffalo.edu&#x2F;" target="_blank"><i class="fa fa-globe ico"></i>
-                    https:&#x2F;&#x2F;www.buffalo.edu&#x2F;</a>
-                </div>
-                <div class="year">January 2013 – May 2014</div>
+
+          <!-- MITRE -->
+          <div class="job">
+            <div class="job-header">
+              <div class="job-company">MITRE</div>
+              <div class="job-period">May 2014 – Nov 2015</div>
+            </div>
+            <div class="job-roles">
+              <div class="job-role">
+                <span class="job-role-title">Software Engineer</span>
               </div>
             </div>
-            <div class="row">
-              <div class="job-details col-xs-11">
-                <div class="profession">Researcher&#x2F;Grant Awardee</div>
-                <div class="description">
-                  Research cutting edge techniques in the area of Computer Security.
-                </div>
-              </div>
+            <div class="job-desc">
+              Web development in Java and HTML/CSS/JS, building and maintaining open source health services
+              technologies.
             </div>
           </div>
-          <div class="job clearfix">
-            <div class="row">
-              <div class="details">
-                <div class="where">New York Power Authority</div>
-                <div class="address">
-                  <a href="http:&#x2F;&#x2F;www.nypa.gov&#x2F;" target="_blank"><i class="fa fa-globe ico"></i>
-                    http:&#x2F;&#x2F;www.nypa.gov&#x2F;</a>
-                </div>
-                <div class="year">June 2014 – November 2014</div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="job-details col-xs-11">
-                <div class="profession">Software Applications Intern</div>
-                <div class="description">
-                  Used Microsoft .Net framework with both VB and C# to develop proprietary business applications, along
-                  with Microsoft SQL Server and Microsoft SQL Report Services for backend management.
-                </div>
-              </div>
-            </div>
+
+        </div>
+
+        <!-- Awards -->
+        <div class="section">
+          <div class="section-title">Awards</div>
+
+          <div class="award-item">
+            <div class="award-name">Program Recognition Award</div>
+            <div class="award-meta">MITRE &middot; April 2015</div>
+          </div>
+
+          <div class="award-item">
+            <div class="award-name">2nd Place &mdash; Google Developer Group Boston Hackathon</div>
+            <div class="award-meta">January 2015 &middot; Android Wear application</div>
+          </div>
+
+          <div class="award-item">
+            <div class="award-name">1st Place &mdash; Branchfood City-wide Hackathon</div>
+            <div class="award-meta">November 2014 &middot; NodeJS + Twilio fresh-food notification system</div>
           </div>
         </div>
-        <!-- AWARDS -->
-        <div class="box">
-          <h2><i class="fa fa-certificate ico"></i> Awards</h2>
-          <ul id="awards" class="clearfix">
-            <li>
-              <div class="year pull-left">April 2015</div>
-              <div class="description pull-right">
-                <h3>MITRE</h3>
-                <p><i class="fa fa-trophy ico"></i> Program Recognition Award</p>
-                <p></p>
-              </div>
-            </li>
-            <li>
-              <div class="year pull-left">January 2015</div>
-              <div class="description pull-right">
-                <h3>Google Developer Meetup Group (Boston)</h3>
-                <p><i class="fa fa-trophy ico"></i> Second Place (Hackathon)</p>
-                <p>Earned second place at a the Boston Google Developer Group's hackathon as part of a team of four. The
-                  hackathon was centered around producing new and innovative Android Wear applications that utilize the
-                  unique form-factor of the system. My idea was to develop a watch application which would use the watch
-                  face to indicate where family/friends were located at a glance, particularly by utilizing the hands on
-                  a clock face to indicate people's positions and switching the hour marking to symbols easily
-                  associated with specific locations (home, shopping, school, etc.).</p>
-              </div>
-            </li>
-            <li>
-              <div class="year pull-left">November 2014</div>
-              <div class="description pull-right">
-                <h3>Branchfood</h3>
-                <p><i class="fa fa-trophy ico"></i> First Place (Hackathon)</p>
-                <p>Grand Prize Winner of city-wide hackathon working in a team of 4. As the developer of the group, I
-                  built a prototype of a system which was meant to maintain communication between local store operators
-                  and the clientele, notifying them when fresh food was available. The project was originally thought of
-                  as a potential solution to the problem of food deserts, areas where fresh food is not commonly
-                  available (rural/dense urban environments). This project utilized NodeJS (with Express on top) and the
-                  Twilio API to handle connections to end users through SMS, which maximizes outreach while lowering a
-                  potential barrier to entry.</p>
-              </div>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <div class="col-xs-12 col-sm-5">
-        <!-- CONTACT -->
-        <div class="box clearfix">
-          <h2><i class="fa fa-bullseye ico"></i> Contact</h2>
-          <div class="contact-item">
-            <div class="icon pull-left text-center"><span class="fa fa-map-marker fa-fw"></span></div>
-            <div class="title pull-right">Tonawanda, NY</div>
-          </div>
-          <div class="contact-item">
-            <div class="icon pull-left text-center"><span class="fa fa-phone fa-fw"></span></div>
-            <div class="title only pull-right">(716) 867-7959</div>
-          </div>
-          <div class="contact-item">
-            <div class="icon pull-left text-center"><span class="fa fa-envelope fa-fw"></span></div>
-            <div class="title only pull-right"><a
-                href="/cdn-cgi/l/email-protection#ea8f98838980868f82848f98aa8d878b8386c4898587" target="_blank"><span
-                  class="__cf_email__"
-                  data-cfemail="6306110a00090f060b0d061123040e020a0f4d000c0e">[email&#160;protected]</span>
-                <script data-cfhash='f9e31'
-                  type="text/javascript">/* <![CDATA[ */!function (t, e, r, n, c, a, p) { try { t = document.currentScript || function () { for (t = document.getElementsByTagName('script'), e = t.length; e--;)if (t[e].getAttribute('data-cfhash')) return t[e] }(); if (t && (c = t.previousSibling)) { p = t.parentNode; if (a = c.getAttribute('data-cfemail')) { for (e = '', r = '0x' + a.substr(0, 2) | 0, n = 2; a.length - n; n += 2)e += '%' + ('0' + ('0x' + a.substr(n, 2) ^ r).toString(16)).slice(-2); p.replaceChild(document.createTextNode(decodeURIComponent(e)), c) } p.removeChild(t) } } catch (u) { } }()/* ]]> */</script>
-              </a></div>
-          </div>
-          <div class="contact-item">
-            <div class="icon pull-left text-center"><span class="fa fa-globe fa-fw"></span></div>
-            <div class="title only pull-right"><a href="http:&#x2F;&#x2F;ericjlehner.com"
-                target="_blank">http:&#x2F;&#x2F;ericjlehner.com</a></div>
-          </div>
-          <div class="contact-item">
-            <div class="icon pull-left text-center"><span class="fa fa-github-square fa-fw"></span></div>
-            <div class="title pull-right">Github</div>
-            <div class="description pull-right"><a href="http:&#x2F;&#x2F;github.com&#x2F;elehner"
-                target="_blank">Elehner</a></div>
-          </div>
-          <div class="contact-item">
-            <div class="icon pull-left text-center"><span class="fa fa-linkedin-square fa-fw"></span></div>
-            <div class="title pull-right">LinkedIn</div>
-            <div class="description pull-right"><a
-                href="https:&#x2F;&#x2F;www.linkedin.com&#x2F;pub&#x2F;eric-lehner&#x2F;34&#x2F;20a&#x2F;56b"
-                target="_blank">Me</a></div>
-          </div>
-        </div>
-        <!-- EDUCATION -->
-        <div class="box">
-          <h2><i class="fa fa-university ico"></i> Education</h2>
-          <ul id="education" class="clearfix">
-            <li>
-              <div class="year pull-left">2014 2012</div>
-              <div class="description pull-right">
-                <h3>University at Buffalo</h3>
-                <p><i class="fa fa-graduation-cap ico"></i> Masters of Science</p>
-                <p>Computer Science</p>
-                <p>
-                  GPA: 3.9
-                </p>
-              </div>
-            </li>
-            <li>
-              <div class="year pull-left">2012 2008</div>
-              <div class="description pull-right">
-                <h3>University at Buffalo</h3>
-                <p><i class="fa fa-graduation-cap ico"></i> Bachelors of Science</p>
-                <p>Computer Engineering</p>
-                <p>
-                  GPA: 3.8
-                </p>
-              </div>
-            </li>
-          </ul>
-        </div>
-        <!-- SKILLS -->
-        <div class="box">
-          <h2><i class="fa fa-tasks ico"></i> Skills</h2>
-          <div class="skills clearfix">
-            <div class="item-skills">
-              Software Development
-              <span class="skill-level">Moderate</span>
+
+      </main>
+
+      <!-- ── RIGHT COLUMN ── -->
+      <aside>
+
+        <!-- Skills -->
+        <div class="section">
+          <div class="section-title">Skills</div>
+
+          <div class="skill-group">
+            <div class="skill-group-label">Languages</div>
+            <div class="tags">
+              <span class="tag">Golang</span>
+              <span class="tag">Ruby</span>
+              <span class="tag">Kotlin</span>
+              <span class="tag">TypeScript</span>
+              <span class="tag">SQL</span>
+              <span class="tag">HTML / CSS</span>
             </div>
-            <div class="col-sm-offset-1 col-sm-12 clearfix">
-              <span class="skill badge">HTML</span>
-              <span class="skill badge">CSS</span>
-              <span class="skill badge">Javascript</span>
-              <span class="skill badge">Rails</span>
-              <span class="skill badge">Java</span>
+          </div>
+
+          <div class="skill-group" style="margin-top: 1rem;">
+            <div class="skill-group-label">Frameworks &amp; Tools</div>
+            <div class="tags">
+              <span class="tag muted">Rails</span>
+              <span class="tag muted">Micronaut</span>
+              <span class="tag muted">Liquibase</span>
+              <span class="tag muted">Jooq</span>
+              <span class="tag muted">PostgreSQL</span>
             </div>
           </div>
         </div>
-        <!-- PUBLICATIONS -->
-        <div class="box">
-          <h2><i class="fa fa-book ico"></i> Publications</h2>
-          <div class="publication panel panel-default">
-            <div class="panel-heading">
-              <div class="name panel-title">Information Flows as a Permission Mechanism</div>
-            </div>
-            <div class="panel-body">
-              <div class="publisher"><i class="fa fa-bookmark ico"></i> ASE</div>
-              <div class="year">15 September 2014</div>
-              <div class="address">
-                <a href="https:&#x2F;&#x2F;dl.acm.org&#x2F;citation.cfm?id=2643018" target="_blank"><i
-                    class="fa fa-globe ico"></i> https:&#x2F;&#x2F;dl.acm.org&#x2F;citation.cfm?id=2643018</a>
-              </div>
-              <p>This paper focused on the idea of Flow Permissions as an extension to Android's current Permission
-                Mechanism. A Flow Permission is the existence of a code path from a Permission protected source, say the
-                IMEI number, to a Sink where information can be leaked out, such as through the Network or SMS. My duty
-                in the development of this paper was data parsing and and locating interesting statistics/anomalies.</p>
-            </div>
+
+        <!-- Education -->
+        <div class="section">
+          <div class="section-title">Education</div>
+
+          <div class="edu-item">
+            <div class="edu-school">University at Buffalo</div>
+            <div class="edu-degree">M.S. Computer Science</div>
+            <div class="edu-meta">2012 – 2014 &middot; GPA 3.9</div>
+          </div>
+
+          <div class="edu-item">
+            <div class="edu-school">University at Buffalo</div>
+            <div class="edu-degree">B.S. Computer Engineering</div>
+            <div class="edu-meta">2008 – 2012 &middot; GPA 3.8</div>
           </div>
         </div>
-        <!-- LANGUAGES -->
-        <div class="box">
-          <h2><i class="fa fa-language ico"></i> Languages</h2>
-          <ul class="list-group">
-            <li class=" list-group-item">English<span class="skill badge pull-right">Native speaker</span></li>
-          </ul>
-        </div>
-        <!-- HOBBIES -->
-        <div class="box">
-          <h2><i class="fa fa-heart ico"></i> Interests</h2>
-          <div class="interests clearfix">
-            <div class="item-interests">
-              Learning
-            </div>
-            <div class="col-sm-offset-1 col-sm-12 clearfix">
-              <span class="interest badge">Code School/Academy</span>
-              <span class="interest badge">Cousera</span>
-            </div>
+
+        <!-- Publication -->
+        <div class="section">
+          <div class="section-title">Publication</div>
+          <div class="pub-title">Information Flows as a Permission Mechanism</div>
+          <div class="pub-venue">
+            <a href="https://dl.acm.org/citation.cfm?id=2643018" target="_blank">ASE &middot; September 2014</a>
           </div>
-          <div class="interests clearfix">
-            <div class="item-interests">
-              Reading
-            </div>
-            <div class="col-sm-offset-1 col-sm-12 clearfix">
-              <span class="interest badge">Neil Gaiman</span>
-              <span class="interest badge">Malcolm Gladwell</span>
-              <span class="interest badge">Alan Moore</span>
-            </div>
-          </div>
-          <div class="interests clearfix">
-            <div class="item-interests">
-              Nature
-            </div>
-            <div class="col-sm-offset-1 col-sm-12 clearfix">
-              <span class="interest badge">Walking Trails</span>
-              <span class="interest badge">Swimming in Lakes/Ponds</span>
-              <span class="interest badge">Building Rock Statues</span>
-            </div>
+          <div class="pub-desc">
+            Research extending Android's permission model with "Flow Permissions" — identifying code paths from
+            protected data sources to potential leak sinks like SMS or network.
           </div>
         </div>
-      </div>
+
+      </aside>
+
     </div>
   </div>
-  <!-- JQUERY -->
-  <script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
-  <!-- BOOTSTRAP -->
-  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-
-  <script
-    type="text/javascript">/* <![CDATA[ */(function (d, s, a, i, j, r, l, m, t) { try { l = d.getElementsByTagName('a'); t = d.createElement('textarea'); for (i = 0; l.length - i; i++) { try { a = l[i].href; s = a.indexOf('/cdn-cgi/l/email-protection'); m = a.length; if (a && s > -1 && m > 28) { j = 28 + s; s = ''; if (j < m) { r = '0x' + a.substr(j, 2) | 0; for (j += 2; j < m && a.charAt(j) != 'X'; j += 2)s += '%' + ('0' + ('0x' + a.substr(j, 2) ^ r).toString(16)).slice(-2); j++; s = decodeURIComponent(s) + a.substr(j, m - j) } t.innerHTML = s.replace(/</g, '&lt;').replace(/>/g, '&gt;'); l[i].href = 'mailto:' + t.value } } catch (e) { } } } catch (e) { } })(document);/* ]]> */</script>
 </body>
 
 </html>
